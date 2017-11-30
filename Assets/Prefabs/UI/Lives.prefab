@@ -39,6 +39,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac66d18314909c347b250f8f17ac1746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInfos: {fileID: 0}
   gameManager: {fileID: 0}
   heartAsset: {fileID: 1928161326770932, guid: bf679784a914a4f46a930633d42da48b, type: 2}
   offset: 0.7

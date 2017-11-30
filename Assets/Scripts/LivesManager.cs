@@ -5,17 +5,7 @@ using UnityEditor;
 
 public class LivesManager : MonoBehaviour
 {
-    public static LivesManager instance = null;
-
-    private void Awake()
-    {
-        if (instance == null)
-            instance = this;
-        else if (instance != this)
-            Destroy(gameObject);
-
-        DontDestroyOnLoad(gameObject);
-    }
+    public UnitInfos playerInfos;
 
     public GameManager gameManager;
     public GameObject heartAsset;
@@ -26,8 +16,7 @@ public class LivesManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        var l_HeartsCount = gameManager.PlayerLives;
-        Debug.Log("count of lives : " + l_HeartsCount);
+        var l_HeartsCount = playerInfos.health;
         for (var l_Itr = 0; l_Itr < l_HeartsCount; l_Itr++)
         {
             var l_Transform = new Vector3(transform.position.x + (l_Itr * offset), transform.position.y, transform.position.z);

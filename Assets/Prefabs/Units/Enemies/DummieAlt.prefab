@@ -107,8 +107,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b619976301d945c4fac43470bdf0cac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coeffFreinage: 4
+  baseVitesse: 3
   health: 75
   damage: 2
+  vitesse: 0
+  vitesseChanger: 0
 --- !u!212 &212445340097418054
 SpriteRenderer:
   m_ObjectHideFlags: 1

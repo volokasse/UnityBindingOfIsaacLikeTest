@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 50355577683773398}
   - component: {fileID: 58985067390034226}
   - component: {fileID: 114728640733238776}
+  - component: {fileID: 114049541123336464}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -76,9 +77,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.032679588, y: 0}
+  m_Offset: {x: 0.032679588, y: -0.25246465}
   serializedVersion: 2
-  m_Radius: 0.32353017
+  m_Radius: 0.2092067
 --- !u!95 &95188288495126414
 Animator:
   serializedVersion: 3
@@ -96,6 +97,23 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114049541123336464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1833517848350356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b619976301d945c4fac43470bdf0cac2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coeffFreinage: 4
+  baseVitesse: 3
+  health: 3
+  damage: 1
+  vitesse: 0
+  vitesseChanger: 0
 --- !u!114 &114728640733238776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -108,9 +126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   livesManager: {fileID: 0}
+  unitInfos: {fileID: 114049541123336464}
   rgdBody: {fileID: 50355577683773398}
-  baseVitesse: 3
-  coeffFreinage: 10
 --- !u!212 &212555609102373574
 SpriteRenderer:
   m_ObjectHideFlags: 1
