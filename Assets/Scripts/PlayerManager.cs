@@ -10,6 +10,9 @@ public class PlayerManager : MonoBehaviour
     public Rigidbody2D rgdBody;
     public SpriteRenderer spriteRenderer;
 
+    private Enums.MovementDirection currentDirection  = Enums.MovementDirection.NONE;
+    private Enums.MovementDirection blockedDirections = Enums.MovementDirection.NONE;
+
     private void Start()
     {
 
@@ -17,10 +20,25 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
+        /// Movements
         if (Input.GetKey(KeyCode.S)) // bottom
-            rgdBody.velocity = new Vector2(rgdBody.velocity.x, -unitInfos.getVitesse());
+        {
+            currentDirection |= Enums.MovementDirection.BOTTOM;
+
+            if ((blockedDirections & Enums.MovementDirection.BOTTOM) != 0)
+                rgdBody.velocity = new Vector2(rgdBody.velocity.x, 0);
+            else
+                rgdBody.velocity = new Vector2(rgdBody.velocity.x, -unitInfos.getVitesse());
+        }
         else if (Input.GetKey(KeyCode.Z)) // top
-            rgdBody.velocity = new Vector2(rgdBody.velocity.x, unitInfos.getVitesse());
+        {
+            currentDirection |= Enums.MovementDirection.TOP;
+
+            if ((blockedDirections & Enums.MovementDirection.TOP) != 0)
+                rgdBody.velocity = new Vector2(rgdBody.velocity.x, 0);
+            else
+                rgdBody.velocity = new Vector2(rgdBody.velocity.x, unitInfos.getVitesse());
+        }
         else if (rgdBody.velocity.y < 0.25f && rgdBody.velocity.y > -0.25f)
             rgdBody.velocity = new Vector2(rgdBody.velocity.x, 0);
         else if (rgdBody.velocity.y > 0)
@@ -29,9 +47,23 @@ public class PlayerManager : MonoBehaviour
             rgdBody.velocity = new Vector2(rgdBody.velocity.x, rgdBody.velocity.y + (float)(unitInfos.baseVitesse / unitInfos.coeffFreinage));
 
         if (Input.GetKey(KeyCode.D)) // right
-            rgdBody.velocity = new Vector2(unitInfos.getVitesse(), rgdBody.velocity.y);
+        {
+            currentDirection |= Enums.MovementDirection.RIGHT;
+
+            if ((blockedDirections & Enums.MovementDirection.RIGHT) != 0)
+                rgdBody.velocity = new Vector2(0, rgdBody.velocity.y);
+            else
+                rgdBody.velocity = new Vector2(unitInfos.getVitesse(), rgdBody.velocity.y);
+        }
         else if (Input.GetKey(KeyCode.Q)) // left
-            rgdBody.velocity = new Vector2(-unitInfos.getVitesse(), rgdBody.velocity.y);
+        {
+            currentDirection |= Enums.MovementDirection.LEFT;
+
+            if ((blockedDirections & Enums.MovementDirection.LEFT) != 0)
+                rgdBody.velocity = new Vector2(0, rgdBody.velocity.y);
+            else
+                rgdBody.velocity = new Vector2(-unitInfos.getVitesse(), rgdBody.velocity.y);
+        }
         else if (rgdBody.velocity.x < .25f && rgdBody.velocity.x > -.25f)
             rgdBody.velocity = new Vector2(0, rgdBody.velocity.y);
         else if (rgdBody.velocity.x > 0)
@@ -39,11 +71,13 @@ public class PlayerManager : MonoBehaviour
         else if (rgdBody.velocity.x < 0)
             rgdBody.velocity = new Vector2(rgdBody.velocity.x + (float)(unitInfos.baseVitesse / unitInfos.coeffFreinage), rgdBody.velocity.y);
 
+        /// Colors management
         if (unitInfos.vitesseModifier < 100f && unitInfos.vitesseModifier != 0f)
             spriteRenderer.color = Colors.slow;
         else
             spriteRenderer.color = Colors.normal;
 
+        /// Shoot
         if (Input.GetKey(KeyCode.M)) // right
             bulletFactory.Shoot(rgdBody, unitInfos, gameObject, "right");
         else if (Input.GetKey(KeyCode.K)) // left
@@ -52,6 +86,16 @@ public class PlayerManager : MonoBehaviour
             bulletFactory.Shoot(rgdBody, unitInfos, gameObject, "top");
         else if (Input.GetKey(KeyCode.L)) // bottom
             bulletFactory.Shoot(rgdBody, unitInfos, gameObject, "bottom");
+
+        /// Check movements
+        if (Input.GetKeyUp(KeyCode.S))
+            currentDirection &= ~Enums.MovementDirection.BOTTOM;
+        if (Input.GetKeyUp(KeyCode.Z))
+            currentDirection &= ~Enums.MovementDirection.TOP;
+        if (Input.GetKeyUp(KeyCode.Q))
+            currentDirection &= ~Enums.MovementDirection.LEFT;
+        if (Input.GetKeyUp(KeyCode.D))
+            currentDirection &= ~Enums.MovementDirection.RIGHT;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -99,5 +143,13 @@ public class PlayerManager : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void setCanMove(bool p_CanMove, Enums.MovementDirection p_Direction)
+    {
+        if (p_CanMove)
+            blockedDirections &= ~p_Direction;
+        else
+            blockedDirections |= p_Direction;
     }
 }
