@@ -7,19 +7,22 @@ public class UnitInfos : MonoBehaviour
     public int coeffFreinage           = 4;
     public float baseVitesse           = 3f;
     public float baseProjectileVitesse = 4f;
-    public float baseTimerProjectile   = 1f;
+    public float baseTimerProjectile   = .5f;
+    public float baseProjectileRange   = 1f;
 
     /// Unit actual stats
-    public int health              = 3;
-    public int damage              = 1;
-    public float vitesse           = 0f;
-    public float projectileVitesse = 0f;
-    public float timerProjectile   = 0f;
+    public int health               = 3;
+    public int damage               = 1;
+    private float vitesse           = 0f;
+    private float projectileVitesse = 0f;
+    private float timerProjectile   = 0f;
+    private float projectileRange   = 0f;
 
     ///  Modifiers
-    public float vitesseModifier = 0f;
+    public float vitesseModifier           = 0f;
     public float projectileVitesseModifier = 0f;
-    public float timerProjectileModifier = 0f;
+    public float timerProjectileModifier   = 0f;
+    public float projectileRangeModifier   = 0f;
 
 
     private void Update()
@@ -44,6 +47,13 @@ public class UnitInfos : MonoBehaviour
             timerProjectile = baseTimerProjectile + (baseTimerProjectile * (timerProjectileModifier / 100));
         else
             timerProjectile = baseTimerProjectile;
+
+        if (projectileRangeModifier > 0 && projectileRangeModifier < 100)
+            projectileRange = baseProjectileRange - (baseProjectileRange * (projectileRangeModifier / 100));
+        else if (projectileRangeModifier > 100)
+            projectileRange = baseProjectileRange + (baseProjectileRange * (projectileRangeModifier / 100));
+        else
+            projectileRange = baseProjectileRange;
     }
 
     public void ChangeSpeed(int percentModifier)
@@ -54,5 +64,25 @@ public class UnitInfos : MonoBehaviour
     public void ChangeProjectileSpeed(int percentModifier)
     {
         projectileVitesseModifier += (float)percentModifier;
+    }
+
+    public float getVitesse()
+    {
+        return vitesse;
+    }
+
+    public float getProjectileVitesse()
+    {
+        return projectileVitesse;
+    }
+
+    public float getTimerProjectile()
+    {
+        return timerProjectile;
+    }
+
+    public float getProjectileRange()
+    {
+        return projectileRange;
     }
 }

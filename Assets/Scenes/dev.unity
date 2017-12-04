@@ -366,6 +366,16 @@ Prefab:
       propertyPath: bulletFactory
       value: 
       objectReference: {fileID: 963405154}
+    - target: {fileID: 114049541123336464, guid: 2fded4fe165fba54db393bd516b63340,
+        type: 2}
+      propertyPath: timerProjectile
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114049541123336464, guid: 2fded4fe165fba54db393bd516b63340,
+        type: 2}
+      propertyPath: baseTimerProjectile
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2fded4fe165fba54db393bd516b63340, type: 2}
   m_IsPrefabParent: 0

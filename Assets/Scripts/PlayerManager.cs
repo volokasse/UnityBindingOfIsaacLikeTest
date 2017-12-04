@@ -18,9 +18,9 @@ public class PlayerManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKey(KeyCode.S)) // bottom
-            rgdBody.velocity = new Vector2(rgdBody.velocity.x, -unitInfos.vitesse);
+            rgdBody.velocity = new Vector2(rgdBody.velocity.x, -unitInfos.getVitesse());
         else if (Input.GetKey(KeyCode.Z)) // top
-            rgdBody.velocity = new Vector2(rgdBody.velocity.x, unitInfos.vitesse);
+            rgdBody.velocity = new Vector2(rgdBody.velocity.x, unitInfos.getVitesse());
         else if (rgdBody.velocity.y < 0.25f && rgdBody.velocity.y > -0.25f)
             rgdBody.velocity = new Vector2(rgdBody.velocity.x, 0);
         else if (rgdBody.velocity.y > 0)
@@ -29,9 +29,9 @@ public class PlayerManager : MonoBehaviour
             rgdBody.velocity = new Vector2(rgdBody.velocity.x, rgdBody.velocity.y + (float)(unitInfos.baseVitesse / unitInfos.coeffFreinage));
 
         if (Input.GetKey(KeyCode.D)) // right
-            rgdBody.velocity = new Vector2(unitInfos.vitesse, rgdBody.velocity.y);
+            rgdBody.velocity = new Vector2(unitInfos.getVitesse(), rgdBody.velocity.y);
         else if (Input.GetKey(KeyCode.Q)) // left
-            rgdBody.velocity = new Vector2(-unitInfos.vitesse, rgdBody.velocity.y);
+            rgdBody.velocity = new Vector2(-unitInfos.getVitesse(), rgdBody.velocity.y);
         else if (rgdBody.velocity.x < .25f && rgdBody.velocity.x > -.25f)
             rgdBody.velocity = new Vector2(0, rgdBody.velocity.y);
         else if (rgdBody.velocity.x > 0)

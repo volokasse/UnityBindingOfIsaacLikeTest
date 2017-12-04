@@ -21,7 +21,7 @@ public class BulletFactory : MonoBehaviour
 
     public void Shoot(Rigidbody2D p_RgdBody, UnitInfos p_UnitInfos, GameObject p_Player, string p_Direction)
     {
-        if (lastShoot == 0f || (Time.time - lastShoot) > p_UnitInfos.timerProjectile)
+        if (lastShoot == 0f || (Time.time - lastShoot) > p_UnitInfos.getTimerProjectile())
         {
             var newBullet = Instantiate(bulletPrefab, p_Player.transform.position, p_Player.transform.rotation).gameObject;
             var bulletRgdBody = newBullet.GetComponent<Rigidbody2D>();
@@ -30,21 +30,21 @@ public class BulletFactory : MonoBehaviour
             switch (p_Direction)
             {
                 case "right":
-                    bulletVelocity.x = p_UnitInfos.projectileVitesse;
+                    bulletVelocity.x = p_UnitInfos.getProjectileVitesse();
                     break;
                 case "left":
-                    bulletVelocity.x = -p_UnitInfos.projectileVitesse;
+                    bulletVelocity.x = -p_UnitInfos.getProjectileVitesse();
                     break;
                 case "top":
-                    bulletVelocity.y = p_UnitInfos.projectileVitesse;
+                    bulletVelocity.y = p_UnitInfos.getProjectileVitesse();
                     break;
                 case "bottom":
-                    bulletVelocity.y = -p_UnitInfos.projectileVitesse;
+                    bulletVelocity.y = -p_UnitInfos.getProjectileVitesse();
                     break;
             }
 
             bulletRgdBody.velocity = bulletVelocity;
-            Destroy(newBullet.gameObject, p_UnitInfos.timerProjectile);
+            Destroy(newBullet.gameObject, p_UnitInfos.getProjectileRange());
 
             lastShoot = Time.time;
         }
