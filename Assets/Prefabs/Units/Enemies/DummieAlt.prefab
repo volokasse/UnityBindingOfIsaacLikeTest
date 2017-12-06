@@ -73,7 +73,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.009803891, y: -0.08823466}
@@ -109,10 +109,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coeffFreinage: 4
   baseVitesse: 3
+  baseProjectileVitesse: 4
+  baseTimerProjectile: 0.5
+  baseProjectileRange: 1
   health: 75
   damage: 2
-  vitesse: 0
-  vitesseChanger: 0
+  vitesseModifier: 0
+  projectileVitesseModifier: 0
+  timerProjectileModifier: 0
+  projectileRangeModifier: 0
 --- !u!212 &212445340097418054
 SpriteRenderer:
   m_ObjectHideFlags: 1
