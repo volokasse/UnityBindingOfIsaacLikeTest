@@ -404,6 +404,26 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114049541123336464, guid: 2fded4fe165fba54db393bd516b63340,
+        type: 2}
+      propertyPath: baseTimerProjectile
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114049541123336464, guid: 2fded4fe165fba54db393bd516b63340,
+        type: 2}
+      propertyPath: baseProjectileVitesse
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114049541123336464, guid: 2fded4fe165fba54db393bd516b63340,
+        type: 2}
+      propertyPath: baseProjectileRange
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114049541123336464, guid: 2fded4fe165fba54db393bd516b63340,
+        type: 2}
+      propertyPath: coeffFreinage
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fded4fe165fba54db393bd516b63340, type: 2}
   m_IsPrefabAsset: 0
