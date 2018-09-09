@@ -5,7 +5,8 @@ public class Enums : ScriptableObject
 {
     public enum CollectibleType : int
     {
-        HEAL = 0x01
+        HEAL        = 0x01,
+        COLLECTIBLE = 0x02
     }
 
     public enum TilesType : int

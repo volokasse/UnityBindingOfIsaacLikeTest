@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using System.Collections.Generic;
 
 public class UnitInfos : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class UnitInfos : MonoBehaviour
     public float timerProjectileModifier   = 0f;
     public float projectileRangeModifier   = 0f;
 
+    public Dictionary<uint, Bonus> collectibles = new Dictionary<uint, Bonus>();
 
     private void Update()
     {

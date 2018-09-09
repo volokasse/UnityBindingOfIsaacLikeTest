@@ -43,10 +43,22 @@ public class BulletFactory : MonoBehaviour
                     break;
             }
 
+            _computeBonuses(ref newBullet);
+
             bulletRgdBody.velocity = bulletVelocity;
             Destroy(newBullet.gameObject, p_UnitInfos.getProjectileRange());
 
             lastShoot = Time.time;
+        }
+    }
+
+    private void _computeBonuses(ref GameObject p_Bullet)
+    {
+        var unitInfos = gameObject.GetComponent<UnitInfos>();
+        foreach(var bonus in unitInfos.collectibles.Values)
+        {
+            var localScale = p_Bullet.transform.localScale;
+            p_Bullet.transform.localScale = new Vector3(localScale.x + bonus.AmmoSizeUp, localScale.y + bonus.AmmoSizeUp, 1f);
         }
     }
 }
